@@ -129,8 +129,24 @@ async function run() {
             for (var pr of dependencyIssues) {
                 msg += `\n#${pr.number} - ${pr.title}`;
             }
+            await octokit.issues.addLabels(
+                {
+                    owner: github.context.repo.owner,
+                    repo: github.context.repo.repo,
+                    issue_number: github.context.issue.number,
+                    labels: ["blocked"]
+                }
+            )
             core.setFailed(msg);
         } else {
+            await octokit.issues.removeLabel(
+                {
+                    owner: github.context.repo.owner,
+                    repo: github.context.repo.repo,
+                    issue_number: github.context.issue.number,
+                    name: "blocked"
+                }
+            ).catch((err) => core.error(err.message))
             core.info("\nAll dependencies have been resolved!")
         }
     } catch (error) {

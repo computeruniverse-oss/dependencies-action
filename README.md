@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Check Dependencies
     steps:
-    - uses: gregsdennis/dependencies-action@main
+    - uses: computeruniverse-oss/dependencies-action@main
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```

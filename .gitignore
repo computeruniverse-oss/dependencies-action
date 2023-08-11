@@ -1,0 +1,3 @@
+.idea/
+node_modules/.bin/uuid.cmd
+node_modules/.bin/uuid.ps1
